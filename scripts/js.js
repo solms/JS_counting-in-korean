@@ -1,13 +1,29 @@
+
+$("#answer1").click(function(){
+    alert('I got a click');
+});
 function generate_question() {
 	var num = Math.floor(Math.random()*10);
 	document.getElementById("question").innerHTML = "<strong>What is " + num + " in Korean?</strong>"
-	var right = right_ans(num);
 	var x = Math.floor(Math.random()*4+1)
-	document.getElementById("answer" + x).innerHTML = "<p id='correct'>" + right + "</p>";
-	
+	document.getElementById("answer" + x).innerHTML = "<p id='correct' onclick='show_result(1)'>" + converter(num) + "</p>";
+	for (i = 1; i < 5; i++) {
+		if (i!=x) {
+			var y = Math.floor(Math.random()*10);
+			document.getElementById("answer" + i).innerHTML = "<p id='incorrect' onclick='show_result(0)'>" + converter(y) + "</p>";
+		}
+	}
 }
 
-function right_ans(num) {
+function show_result(ans){
+	if(ans) {
+		document.getElementById("result").innerHTML = "CORRECT! :)";
+	} else {
+		document.getElementById("result").innerHTML = "INCORRECT! :(";
+	}
+}
+
+function converter(num) {
 	if (num > 10) {
 
 	} else {
