@@ -1,9 +1,22 @@
 body {
 	text-align: center;
+	background-color: 	#393939;
+}
+
+#top-banner {
+	/*background-color: 	#6E6E6E;*/
+	color: 				#FF5A09;
+}
+
+#question-block {
+	background-color: 	#FF5A09;
+}
+
+#question {
+	color: #FFFFFF;
 }
 
 p {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 20px;
 	color: #000000;
 }

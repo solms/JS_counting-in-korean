@@ -7,17 +7,21 @@
 	<link rel="stylesheet" type="text/css" href="stylesheets/styles.css" media="screen" />
 </head>
 <body>
-	<h1>Counting in Korean</h1>
-	<h3>A simple web app to help you memorise the Korean numerical system</h3>
-	<script>
-		document.write("<div id='result'></div>");  
-		document.write("<div id='question'></div>");
-		document.write("<span id='answer1'></span>");
-		document.write("<span id='answer2'></span>");
-		document.write("<span id='answer3'></span>");
-		document.write("<span id='answer4'></span>");
-		document.write("<div id='continue'></div>");
-		generate_question();
-	</script>
+	<div id="top-banner">
+		<h1>Counting in Korean</h1>
+		<h3>A simple web app to help you memorise the Korean numerical system</h3>
+	</div>
+	<div id="question-block">
+		<script>
+			document.write("<div id='result'></div>");  
+			document.write("<div id='question'></div>");
+			document.write("<span id='answer1'></span>");
+			document.write("<span id='answer2'></span>");
+			document.write("<span id='answer3'></span>");
+			document.write("<span id='answer4'></span>");
+			document.write("<div id='continue'></div>");
+			generate_question();
+		</script>
+	</div>
 </body>
 </html>
