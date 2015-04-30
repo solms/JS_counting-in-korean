@@ -1,0 +1,1 @@
+A very simple web app to help you memorise the Korean words for numerals (and to help me learn basic Javascript).
