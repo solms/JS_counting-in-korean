@@ -1,5 +1,6 @@
 // Array to store answers in order to check for duplicates
 var used = [];
+var answers = ["", "", "", ""];
 
 // Generates the question
 function generate_question() {
@@ -15,7 +16,9 @@ function generate_question() {
 	document.getElementById("question").innerHTML = "<p>What is " + num + " in Korean?</p>"
 	// Place the correct answer at a random position
 	var x = Math.floor(Math.random()*4+1)
-	document.getElementById("answer" + x).innerHTML = "<p id='correct' onclick='show_result(1)'>" + converter(num) + "</p>";
+	var korean_num = converter(num);
+	answers[x-1] = korean_num;
+	document.getElementById("answer" + x).innerHTML = "<p id='"+x+"' onclick='show_result(1, this.id)'>" + korean_num + "</p>";
 	// Place randomly generated incorrect answers at random positions
 	for (i = 1; i < 5; i++) {
 		if (i!=x) {
@@ -23,15 +26,17 @@ function generate_question() {
 				var y = Math.floor(Math.random()*10);
 			} while (used.indexOf(y) > -1) // Make sure that answers don't duplicate
 			used[used.length] = y;
-			document.getElementById("answer" + i).innerHTML = "<p id='incorrect' onclick='show_result(0)'>" + converter(y) + "</p>";
+			korean_num = converter(y);
+			answers[i-1] = korean_num;
+			document.getElementById("answer" + i).innerHTML = "<p id='"+i+"' onclick='show_result(0, this.id)'>" + korean_num + "</p>";
 		}
 	}
 }
 
 // Show the result of the answer after being clicked
-function show_result(ans){
+function show_result(ans, idx){
 	if(ans) {
-		document.getElementById("result").innerHTML = "CORRECT! :)";
+		document.getElementById("answer" + idx).innerHTML = answers[idx-1] + " &#10004";
 		document.getElementById("continue").innerHTML = "<button type='button' onclick='generate_question()'>Next question</button>"
 	} else {
 		document.getElementById("result").innerHTML = "INCORRECT! :(";
