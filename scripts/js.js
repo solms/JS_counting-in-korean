@@ -2,20 +2,24 @@
 var used = [];
 var answers = ["", "", "", ""];
 
+// Used when generating Korean number
+var korean_temp = "";
+
 // Generates the question
 function generate_question() {
 	// Hide the 'next question' button
 	document.getElementById("continue").innerHTML = ""
 	// Clear the answers array when a new question is generated
 	used = [];
-	// Pick a random number [0,10) to ask
-	var num = Math.floor(Math.random()*10);
+	// Pick a random number [0,100) to ask
+	var num = Math.floor(Math.random()*100);
 	// Add it to the used array
 	used[used.length] = num;
 	// Display the question using the numeral
 	document.getElementById("question").innerHTML = "<p>What is " + num + " in Korean?</p>"
 	// Place the correct answer at a random position
 	var x = Math.floor(Math.random()*4+1)
+	korean_temp = "";
 	var korean_num = converter(num);
 	answers[x-1] = korean_num;
 	document.getElementById("answer" + x).innerHTML = "<p id='"+x+"' onclick='show_result(1, this.id)'>" + korean_num + "</p>";
@@ -23,9 +27,10 @@ function generate_question() {
 	for (i = 1; i < 5; i++) {
 		if (i!=x) {
 			do {
-				var y = Math.floor(Math.random()*10);
+				var y = Math.floor(Math.random()*100);
 			} while (used.indexOf(y) > -1) // Make sure that answers don't duplicate
 			used[used.length] = y;
+			korean_temp = "";
 			korean_num = converter(y);
 			answers[i-1] = korean_num;
 			document.getElementById("answer" + i).innerHTML = "<p id='"+i+"' onclick='show_result(0, this.id)'>" + korean_num + "</p>";
@@ -44,15 +49,15 @@ function show_result(ans, idx){
 }
 
 function converter(num) {
-	var korean_num = "";
 	if (num > 100) {
 
 	} else if (num > 10) {
-
+		korean_temp += get_korean(Math.floor(num/10)) + "십"
+		converter(num-(10*Math.floor(num/10)));
 	} else {
-		korean_num += get_korean(num);
+		korean_temp += get_korean(num);
 	}
-	return korean_num;
+	return korean_temp;
 }
 
 function get_korean(num) {
